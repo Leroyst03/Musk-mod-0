@@ -1,10 +1,21 @@
-const  V = [0,1];
+const cin = require('readline-sync');
+let memoria = [];
 
-for(let i = 1; i <= 9; i++){
-    V.push(V[V.length-1] + V[V.length-2]);
+function Fiborecursivo(numero){
+    if(numero == 1 || numero == 0) return memoria[numero];
+    if(memoria[numero] > 0) return memoria[numero];
+    return memoria[numero] = (Fiborecursivo(numero-1) + Fiborecursivo(numero-2));
 }
 
+let numero = cin.question("Ingrese un numero: ");
+
+for(let i = 0; i <= numero; i++){
+    memoria[i] = 0;
+}
+memoria[1] = 1;
+Fiborecursivo(numero);
+
 for(let i = 1; i < 11; i++){
-    V[i] *= 2;
-    console.log(V[i]);
+    memoria[i] *= 2;
+    console.log(memoria[i]);
 }   
